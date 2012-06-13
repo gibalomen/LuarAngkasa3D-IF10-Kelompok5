@@ -13,44 +13,136 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <stdio.h>
+#include <math.h>
 using namespace std;
 
 /*
  * 
  */
 //angle of rotation
-GLfloat angle = 0.0;
+float xpos =0, ypos = 0, zpos = 0, xrot = 0, yrot = 0, angle=0.0;
 
-//diffuse light color variables
-GLfloat dlr = 1.0;
-GLfloat dlg = 1.0;
-GLfloat dlb = 1.0;
+float cRadius = 20.0f; // our radius distance from our character
 
-//ambient light color variables
-GLfloat alr = 1.0;
-GLfloat alg = 1.0;
-GLfloat alb = 1.0;
+float lastx, lasty;
 
-//light position variables
-GLfloat lx = 0.0;
-GLfloat ly = 0.0;
-GLfloat lz = 1.0;
-GLfloat lw = 0.0;
+//positions of the cubes/star
+float positionz[100];
+float positionx[100];
+float positiony[100];
 
-//draw the cube
-void cube (void) {
-    glRotatef(angle, 1.0, 0.0, 0.0); //rotate on the x axis
-    glRotatef(angle, 0.0, 1.0, 0.0); //rotate on the y axis
-    glRotatef(angle, 0.0, 0.0, 1.0); //rotate on the z axis
-    glutSolidCube(2); //draw the cube
+void cubepositions (void) { //set the positions of the cubes/star
+
+    for (int i=0;i<100;i++)
+    {
+    positionz[i] = rand()%130 + 1;
+    positionx[i] = rand()%130 + 1;
+    positiony[i] = rand()%130 + 1;
+    }
 }
 
+//draw the cube/star
+void cube (void) {
+    for (int i=0;i<100 - 1;i++)
+    {
+    glPushMatrix();
+    glTranslated(-positionx[i + 1] * 10, -positiony[i + 1] * 10, -positionz[i + 1] *10); //translate the cube/star
+    glutSolidSphere(2.0,25,25); //draw the cube/star
+    glPopMatrix();
+    }
+
+}
+
+void starfield (void) {
+   glPushMatrix();
+   glColor3f(1.0f, 1.0f, 0.0f);
+    cube(); //call the cube/star drawing function
+    glPopMatrix();   
+   glColor3f(0.0f, 0.0f, 1.0f);
+    glPushMatrix();
+   glRotatef(90,1.0,0.0,0.0);   
+    cube(); 
+    glPopMatrix();   
+    
+   glColor3f(1.0f, 0.0f, 1.0f);
+    glPushMatrix();
+   glRotatef(180,1.0,0.0,0.0); 
+    cube(); 
+    glPopMatrix();   
+
+   glColor3f(0.0f, 1.0f, 0.0f);
+    glPushMatrix();
+   glRotatef(270,1.0,0.0,0.0);  
+    cube(); 
+    glPopMatrix();  
+
+
+//mirroring
+    glPushMatrix();
+   glRotatef(180,0.0,0.0,1.0);  
+    glPushMatrix();
+   glColor3f(1.0f, 1.0f, 0.0f);
+    cube(); 
+    glPopMatrix(); 
+    
+   glColor3f(0.0f, 0.0f, 1.0f);
+    glPushMatrix();
+   glRotatef(90,1.0,0.0,0.0);  
+    cube(); 
+    glPopMatrix();   
+    
+   glColor3f(1.0f, 0.0f, 1.0f);
+    glPushMatrix();
+   glRotatef(180,1.0,0.0,0.0); 
+    cube(); 
+    glPopMatrix();   
+
+   glColor3f(0.0f, 1.0f, 0.0f);
+    glPushMatrix();
+   glRotatef(270,1.0,0.0,0.0);
+    cube(); 
+    glPopMatrix(); 
+    
+    glPopMatrix();  
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
 void init (void) {
+    cubepositions();
+
+}
+
+void enable (void) {
     glEnable (GL_DEPTH_TEST); //enable the depth testing
     glEnable (GL_LIGHTING); //enable the lighting
     glEnable (GL_LIGHT0); //enable LIGHT0, our Diffuse Light
-    glEnable (GL_LIGHT1); //enable LIGHT1, our Ambient Light
+    glEnable (GL_COLOR_MATERIAL);
     glShadeModel (GL_SMOOTH); //set the shader to smooth shader
+}
+
+void camera (void) {
+   
+  glTranslatef(0.0f, 0.0f, -cRadius);
+    glRotatef(1.0,1.0,0.0,0.0);
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glutSolidTeapot(2); //Our character to follow
+   
+    
+//	gluLookAt(xpos, ypos, 50, 0.0, 0.0, 5.0, 0.0, 1.0, 0.0);    
+  glRotatef(xrot,1.0,0.0,0.0);  //rotate our camera on teh x-axis (left and right)
+  glRotatef(yrot,0.0,1.0,0.0);  //rotate our camera on the y-axis (up and down)
+  glTranslated(-xpos,-ypos,-zpos); //translate the screen to the position of our camera
 
 }
 
@@ -58,16 +150,26 @@ void display (void) {
     glClearColor (0.0,0.0,0.0,1.0); //clear the screen to black
     glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //clear the color buffer and the depth buffer
     glLoadIdentity();  
-    GLfloat DiffuseLight[] = {dlr, dlg, dlb}; //set DiffuseLight[] to the specified values
-    GLfloat AmbientLight[] = {alr, alg, alb}; //set AmbientLight[] to the specified values
-    glLightfv (GL_LIGHT0, GL_DIFFUSE, DiffuseLight); //change the light accordingly
-    glLightfv (GL_LIGHT1, GL_AMBIENT, AmbientLight); //change the light accordingly
-    GLfloat LightPosition[] = {lx, ly, lz, lw}; //set the LightPosition to the specified values
-    glLightfv (GL_LIGHT0, GL_POSITION, LightPosition); //change the light accordingly
-    gluLookAt (0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0); //camera position, x,y,z, looking at x,y,z, Up Positions of the camera
-    cube(); //call the cube drawing function
+
+
+
+    enable();
+   camera();
+   starfield();
+   
+   
+   
+
+    
+
+
+   
+
     glutSwapBuffers(); //swap the buffers
-    angle=angle+0.01; //increase the angle
+    
+ 
+    
+    angle++; //increase the angle
 }
 
 void reshape (int w, int h) {
@@ -75,54 +177,35 @@ void reshape (int w, int h) {
     glMatrixMode (GL_PROJECTION); //set the matrix to projection
 
     glLoadIdentity ();
-    gluPerspective (60, (GLfloat)w / (GLfloat)h, 1.0, 100.0)
-; //set the perspective (angle of sight, width, height, , depth)
+    gluPerspective (60, (GLfloat)w / (GLfloat)h, 1.0, 1000.0); //set the perspective (angle of sight, width, height, , depth)
     glMatrixMode (GL_MODELVIEW); //set the matrix back to model
 
 }
 
-void keyboard (unsigned char key, int x, int y) {
-    if (key=='r') {
-        dlr = 1.0; //change light to red
-        dlg = 0.0;
-        dlb = 0.0;
-    }
-    if (key=='g') {
-        dlr = 0.0; //change light to green
-        dlg = 1.0;
-        dlb = 0.0;
-    }
-    if (key=='b') {
-        dlr = 0.0; //change light to blue
-        dlg = 0.0;
-        dlb = 1.0;
-    }
-    if (key=='w') {
-        ly += 10.0; //move the light up
-    }
-    if (key=='s') {
-        ly -= 10.0; //move the light down
-    }
-    if (key=='a') {
-        lx -= 10.0; //move the light left
-    }
-    if (key=='d') {
-        lx += 10.0; //move the light right
-    }
+
+
+void mouseMovement(int x, int y) {
+    int diffx=x-lastx; //check the difference between the current x and the last x position
+    int diffy=y-lasty; //check the difference between the current y and the last y position
+    lastx=x; //set lastx to the current x position
+    lasty=y; //set lasty to the current y position
+    xrot += (float) diffy; //set the xrot to xrot with the addition of the difference in the y position
+    yrot += (float) diffx;    //set the xrot to yrot with the addition of the difference in the x position
 }
 
 int main (int argc, char **argv) {
     glutInit (&argc, argv);
-    glutInitDisplayMode (GLUT_DOUBLE | GLUT_DEPTH); //set the display to Double buffer, with depth
-    glutInitWindowSize (500, 500); //set the window size
-    glutInitWindowPosition (100, 100); //set the position of the window
-    glutCreateWindow ("A basic OpenGL Window"); //the caption of the window
-    init (); //call the init function
-    glutDisplayFunc (display); //use the display function to draw everything
-    glutIdleFunc (display); //update any variables in display, display can be changed to anyhing, as long as you move the variables to be updated, in this case, angle++;
-    glutReshapeFunc (reshape); //reshape the window accordingly
+    glutInitDisplayMode (GLUT_DOUBLE | GLUT_DEPTH);
+    glutInitWindowSize (800, 600);
+    glutInitWindowPosition (100, 100);
+    glutCreateWindow ("LuarAngkasa3D-IF10-Kelompok5");
+    init ();
+    glutDisplayFunc (display);
+    glutIdleFunc (display);
+    glutReshapeFunc (reshape);
 
-    glutKeyboardFunc (keyboard); //check the keyboard
-    glutMainLoop (); //call the main loop
+    glutPassiveMotionFunc(mouseMovement); //check for mouse movement
+
+    glutMainLoop ();
     return 0;
 }
