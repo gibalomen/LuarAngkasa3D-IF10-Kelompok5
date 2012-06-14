@@ -18,6 +18,10 @@ using namespace std;
 /*
  * 
  */
+ 
+//quadrant
+GLUquadric *quad;
+ 
 //angle of rotation
 float xpos =0, ypos = 0, zpos = 0, xrot = 0, yrot = 0, angle=0.0;
 
@@ -43,11 +47,15 @@ void starPositions (void) { //set the positions of the star
 //draw the star
 void star (void) {
     for (int i=0;i<100 - 1;i++)
-    {
-    glPushMatrix();
-    glTranslated(-positionx[i + 1] * 10, -positiony[i + 1] * 10, -positionz[i + 1] *10); //translate the star
-    glutSolidSphere(2.0,25,25); //draw the star
-    glPopMatrix();
+    { 
+//  star 
+glPushMatrix();
+
+glTranslated(-positionx[i + 1] * 10, -positiony[i + 1] * 10, -positionz[i + 1] *10); //translate the star
+
+gluSphere(quad, 3.0, 5, 2);
+glPopMatrix(); 
+    
     }
 
 }
@@ -120,6 +128,11 @@ void starfield (void) {
 void init (void) {
     starPositions();
 
+
+    quad = gluNewQuadric(); 
+	glDepthFunc(GL_LESS);
+	
+
 }
 
 void enable (void) {
@@ -150,13 +163,30 @@ void display (void) {
     glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //clear the color buffer and the depth buffer
     glLoadIdentity();  
 
-
+gluQuadricTexture(quad,1);
 
     enable();
    camera();
    starfield();
    
    
+  
+  
+  
+   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
    
 
     
@@ -208,3 +238,4 @@ int main (int argc, char **argv) {
     glutMainLoop ();
     return 0;
 }
+
