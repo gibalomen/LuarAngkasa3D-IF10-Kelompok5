@@ -5,7 +5,6 @@
  * Created on 13 Juni 2012, 0:01
  */
 
-
 #include <cstdlib>
 #include <stdlib.h>
 #include <windows.h>
@@ -26,12 +25,12 @@ float cRadius = 20.0f; // our radius distance from our character
 
 float lastx, lasty;
 
-//positions of the cubes/star
+//positions of the star
 float positionz[100];
 float positionx[100];
 float positiony[100];
 
-void cubepositions (void) { //set the positions of the cubes/star
+void starPositions (void) { //set the positions of the star
 
     for (int i=0;i<100;i++)
     {
@@ -41,13 +40,13 @@ void cubepositions (void) { //set the positions of the cubes/star
     }
 }
 
-//draw the cube/star
-void cube (void) {
+//draw the star/star
+void star (void) {
     for (int i=0;i<100 - 1;i++)
     {
     glPushMatrix();
-    glTranslated(-positionx[i + 1] * 10, -positiony[i + 1] * 10, -positionz[i + 1] *10); //translate the cube/star
-    glutSolidSphere(2.0,25,25); //draw the cube/star
+    glTranslated(-positionx[i + 1] * 10, -positiony[i + 1] * 10, -positionz[i + 1] *10); //translate the star/star
+    glutSolidSphere(2.0,25,25); //draw the star/star
     glPopMatrix();
     }
 
@@ -56,24 +55,24 @@ void cube (void) {
 void starfield (void) {
    glPushMatrix();
    glColor3f(1.0f, 1.0f, 0.0f);
-    cube(); //call the cube/star drawing function
+    star(); //call the star/star drawing function
     glPopMatrix();   
    glColor3f(0.0f, 0.0f, 1.0f);
     glPushMatrix();
    glRotatef(90,1.0,0.0,0.0);   
-    cube(); 
+    star(); 
     glPopMatrix();   
     
    glColor3f(1.0f, 0.0f, 1.0f);
     glPushMatrix();
    glRotatef(180,1.0,0.0,0.0); 
-    cube(); 
+    star(); 
     glPopMatrix();   
 
    glColor3f(0.0f, 1.0f, 0.0f);
     glPushMatrix();
    glRotatef(270,1.0,0.0,0.0);  
-    cube(); 
+    star(); 
     glPopMatrix();  
 
 
@@ -82,25 +81,25 @@ void starfield (void) {
    glRotatef(180,0.0,0.0,1.0);  
     glPushMatrix();
    glColor3f(1.0f, 1.0f, 0.0f);
-    cube(); 
+    star(); 
     glPopMatrix(); 
     
    glColor3f(0.0f, 0.0f, 1.0f);
     glPushMatrix();
    glRotatef(90,1.0,0.0,0.0);  
-    cube(); 
+    star(); 
     glPopMatrix();   
     
    glColor3f(1.0f, 0.0f, 1.0f);
     glPushMatrix();
    glRotatef(180,1.0,0.0,0.0); 
-    cube(); 
+    star(); 
     glPopMatrix();   
 
    glColor3f(0.0f, 1.0f, 0.0f);
     glPushMatrix();
    glRotatef(270,1.0,0.0,0.0);
-    cube(); 
+    star(); 
     glPopMatrix(); 
     
     glPopMatrix();  
@@ -119,7 +118,7 @@ void starfield (void) {
 
 
 void init (void) {
-    cubepositions();
+    starPositions();
 
 }
 
