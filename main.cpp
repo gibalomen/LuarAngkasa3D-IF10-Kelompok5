@@ -40,13 +40,13 @@ void starPositions (void) { //set the positions of the star
     }
 }
 
-//draw the star/star
+//draw the star
 void star (void) {
     for (int i=0;i<100 - 1;i++)
     {
     glPushMatrix();
-    glTranslated(-positionx[i + 1] * 10, -positiony[i + 1] * 10, -positionz[i + 1] *10); //translate the star/star
-    glutSolidSphere(2.0,25,25); //draw the star/star
+    glTranslated(-positionx[i + 1] * 10, -positiony[i + 1] * 10, -positionz[i + 1] *10); //translate the star
+    glutSolidSphere(2.0,25,25); //draw the star
     glPopMatrix();
     }
 
@@ -55,7 +55,7 @@ void star (void) {
 void starfield (void) {
    glPushMatrix();
    glColor3f(1.0f, 1.0f, 0.0f);
-    star(); //call the star/star drawing function
+    star(); //call the star drawing function
     glPopMatrix();   
    glColor3f(0.0f, 0.0f, 1.0f);
     glPushMatrix();
