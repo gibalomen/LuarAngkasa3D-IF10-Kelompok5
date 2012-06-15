@@ -116,185 +116,209 @@ void starfield(void) {
 
 void astronot(void) {
 
-    //  kepala 
-    glPushMatrix();
+//  kepala 
+glPushMatrix();
+  
+glTranslatef(0.0, 0.0 + 4.0, 0.0);
+glRotatef(45, 0.0, 0.0, 1.0);
+gluSphere(quad, 3.0, 10, 20);
+glPopMatrix();
 
-    glTranslatef(0.0, 0.0 + 4.0, 0.0);
-    glRotatef(45, 0.0, 0.0, 1.0);
-    gluSphere(quad, 3.0, 10, 20);
-    glPopMatrix();
+//badan
+glPushMatrix();
+  
+glScalef(1.05, 1.4, 1.0);
 
-    //badan
-    glPushMatrix();
+glTranslatef(0.0, 0.0 + 0.3, 0.0);
+gluSphere(quad, 3.0, 5, 10);
+glPopMatrix();
 
-    glScalef(1.05, 1.4, 1.0);
 
-    glTranslatef(0.0, 0.0 + 0.3, 0.0);
-    gluSphere(quad, 3.0, 5, 10);
-    glPopMatrix();
 
+//bag
+glPushMatrix();
+glTranslatef(0.0 + 1.2, 0.0 + 1.3, 0.0);
+glPushMatrix();
+  
+glScalef(1.0, 1.5, 1.0);
+glRotatef(45, 1.0, 0.0, 0.0);
+glRotatef(90, 0.0, 1.0, 0.0);
 
+gluSphere(quad, 3.0, 4, 10);
+glPopMatrix();
+glPopMatrix();
 
-    //bag
-    glPushMatrix();
-    glTranslatef(0.0 + 1.2, 0.0 + 1.3, 0.0);
-    glPushMatrix();
+//pinggang
+glPushMatrix();
+  
+glTranslatef(0.0, 0.0 - 3.0, 0.0);
+glScalef(0.8, 1.0, 0.8);
+glRotatef(45, 0.0, 0.0, 1.0);
 
-    glScalef(1.0, 1.5, 1.0);
-    glRotatef(45, 1.0, 0.0, 0.0);
-    glRotatef(90, 0.0, 1.0, 0.0);
+gluSphere(quad, 3.0, 5, 10);
+glPopMatrix();
 
-    gluSphere(quad, 3.0, 4, 10);
-    glPopMatrix();
-    glPopMatrix();
+//tangan kiri atas
+glPushMatrix();
+  
 
-    //pinggang
-    glPushMatrix();
 
-    glTranslatef(0.0, 0.0 - 3.0, 0.0);
-    glScalef(0.8, 1.0, 0.8);
-    glRotatef(45, 0.0, 0.0, 1.0);
+glTranslatef(0.0 - 1.5, 0.0, 0.0 - 4.7);
+glRotatef(45, -1.0, 1.0, -1.0);
 
-    gluSphere(quad, 3.0, 5, 10);
-    glPopMatrix();
+gluCylinder(quad, 1.0, 1.0, 3.5, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
+glPopMatrix();
 
-    //tangan kiri atas
-    glPushMatrix();
+//tangan kiri bawah
+glPushMatrix();
+  
 
 
+glTranslatef(0.0 - 3.55, 0.0 - 1.05, 0.0 - 6.8);
+glRotatef(60, -1.0, 1.0, -1.0);
 
-    glTranslatef(0.0 - 1.5, 0.0, 0.0 - 4.7);
-    glRotatef(45, -1.0, 1.0, -1.0);
+gluCylinder(quad, 1.0, 1.0, 3.5, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
+glPopMatrix();
 
-    gluCylinder(quad, 1.0, 1.0, 3.5, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
-    glPopMatrix();
+//tutup tangan kiri bawah
+glPushMatrix();
+  
 
-    //tangan kiri bawah
-    glPushMatrix();
 
+glTranslatef(0.0 - 3.55, 0.0 - 1.05, 0.0 - 6.8);
+glRotatef(60, -1.0, 1.0, -1.0);
 
+gluCylinder(quad, 1.0, 0.0, 0.0, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
+glPopMatrix();
 
-    glTranslatef(0.0 - 3.55, 0.0 - 1.05, 0.0 - 6.8);
-    glRotatef(60, -1.0, 1.0, -1.0);
+//tangan kanan atas
+glPushMatrix();
+//
 
-    gluCylinder(quad, 1.0, 1.0, 3.5, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
-    glPopMatrix();
 
-    //tutup tangan kiri bawah
-    glPushMatrix();
+glTranslatef(0.0, 0.0 + 1.5, 0.0 + 1.8);
+glRotatef(45, 1.0, -1.0, 1.0);
 
+gluCylinder(quad, 1.0, 1.0, 3.5, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
+glPopMatrix();
 
+//tangan kanan bawah
+glPushMatrix();
+  
 
-    glTranslatef(0.0 - 3.55, 0.0 - 1.05, 0.0 - 6.8);
-    glRotatef(60, -1.0, 1.0, -1.0);
 
-    gluCylinder(quad, 1.0, 0.0, 0.0, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
-    glPopMatrix();
+glTranslatef(0.0 - 1.0, 0.0, 0.0 + 4.4);
+glRotatef(60, 1.0, -1.0, 1.0);
 
-    //tangan kanan atas
-    glPushMatrix();
-    //
+gluCylinder(quad, 1.0, 1.0, 3.5, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
+glPopMatrix();
 
+//tutup tangan kanan bawah
+glPushMatrix();
+  
 
-    glTranslatef(0.0, 0.0 + 1.5, 0.0 + 1.8);
-    glRotatef(45, 1.0, -1.0, 1.0);
 
-    gluCylinder(quad, 1.0, 1.0, 3.5, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
-    glPopMatrix();
+glTranslatef(0.0 - 2.1, 0.0 - 2.3, 0.0 + 6.7);
+glRotatef(60, 1.0, -1.0, 1.0);
 
-    //tangan kanan bawah
-    glPushMatrix();
+gluCylinder(quad, 1.0, 0.0, 0.0, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
+glPopMatrix();
 
+//kaki kiri atas
+glPushMatrix();
+  
 
 
-    glTranslatef(0.0 - 1.0, 0.0, 0.0 + 4.4);
-    glRotatef(60, 1.0, -1.0, 1.0);
+glTranslatef(0.0, 0.0 - 4.1, 0.0 + 1.0);
+glRotatef(80, 1.0, 1.0, 0.0);
 
-    gluCylinder(quad, 1.0, 1.0, 3.5, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
-    glPopMatrix();
+gluCylinder(quad, 1.0, 1.0, 3.5, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
+glPopMatrix();
 
-    //tutup tangan kanan bawah
-    glPushMatrix();
 
+//kaki kiri bawah
+glPushMatrix();
+  
 
 
-    glTranslatef(0.0 - 2.1, 0.0 - 2.3, 0.0 + 6.7);
-    glRotatef(60, 1.0, -1.0, 1.0);
+glTranslatef(0.0 + 2.0, 0.0 - 6.3, 0.0 + 1.5);
+glRotatef(100, 1.0, 1.0, 1.0);
 
-    gluCylinder(quad, 1.0, 0.0, 0.0, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
-    glPopMatrix();
+gluCylinder(quad, 1.0, 1.0, 3.5, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
+glPopMatrix();
 
-    //kaki kiri atas
-    glPushMatrix();
+//tutup  kaki kiri bawah
+glPushMatrix();
+  
 
 
+glTranslatef(0.0 + 5.4, 0.0 - 6.9, 0.0 + 2.3);
+glRotatef(100, 1.0, 1.0, 1.0);
 
-    glTranslatef(0.0, 0.0 - 4.1, 0.0 + 1.0);
-    glRotatef(80, 1.0, 1.0, 0.0);
+gluCylinder(quad, 0.0, 1.0, 0.0, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
+glPopMatrix();
 
-    gluCylinder(quad, 1.0, 1.0, 3.5, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
-    glPopMatrix();
 
 
-    //kaki kiri bawah
-    glPushMatrix();
+//kaki kanan atas
+glPushMatrix();
+  
 
 
+glTranslatef(0.0, 0.0 - 4.1, 0.0 - 1.0);
+glRotatef(100, 1.0, 1.0, 0.0);
 
-    glTranslatef(0.0 + 2.0, 0.0 - 6.3, 0.0 + 1.5);
-    glRotatef(100, 1.0, 1.0, 1.0);
+gluCylinder(quad, 1.0, 1.0, 3.5, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
+glPopMatrix();
 
-    gluCylinder(quad, 1.0, 1.0, 3.5, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
-    glPopMatrix();
+//kaki kanan bawah
+glPushMatrix();
+  
 
-    //tutup  kaki kiri bawah
-    glPushMatrix();
 
+glTranslatef(0.0 + 2.0, 0.0 - 6.3, 0.0 - 1.5);
+glRotatef(100, 0.0, 1.0, 0.0);
 
+gluCylinder(quad, 1.0, 1.0, 3.5, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
+glPopMatrix();
 
-    glTranslatef(0.0 + 5.4, 0.0 - 6.9, 0.0 + 2.3);
-    glRotatef(100, 1.0, 1.0, 1.0);
 
-    gluCylinder(quad, 0.0, 1.0, 0.0, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
-    glPopMatrix();
+//tutup  kaki kanan bawah
+glPushMatrix();
+  
 
 
+glTranslatef(0.0 + 5.5, 0.0 - 6.3, 0.0 - 2.1);
+glRotatef(100, 0.0, 1.0, 0.0);
 
-    //kaki kanan atas
-    glPushMatrix();
-
-
-
-    glTranslatef(0.0, 0.0 - 4.1, 0.0 - 1.0);
-    glRotatef(100, 1.0, 1.0, 0.0);
-
-    gluCylinder(quad, 1.0, 1.0, 3.5, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
-    glPopMatrix();
-
-    //kaki kanan bawah
-    glPushMatrix();
-
-
-
-    glTranslatef(0.0 + 2.0, 0.0 - 6.3, 0.0 - 1.5);
-    glRotatef(100, 0.0, 1.0, 0.0);
-
-    gluCylinder(quad, 1.0, 1.0, 3.5, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
-    glPopMatrix();
-
-
-    //tutup  kaki kanan bawah
-    glPushMatrix();
-
-
-
-    glTranslatef(0.0 + 5.5, 0.0 - 6.3, 0.0 - 2.1);
-    glRotatef(100, 0.0, 1.0, 0.0);
-
-    gluCylinder(quad, 0.0, 1.0, 0.0, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
-    glPopMatrix();
+gluCylinder(quad, 0.0, 1.0, 0.0, 15, 3); //lebarbawah,lebaratas,panjang,potongan,
+glPopMatrix();
 
 }
+
+
+void planet(void) {
+
+glPushMatrix();
+glTranslatef(0.0, 30.0, 60.0);
+glRotatef(angle, 0.0, 1.0, 0.0);
+glRotatef(90, 1.0, 0.0, 0.0);
+
+
+gluSphere(quad, 20, 25, 25);
+glPopMatrix();
+
+
+}
+
+
+
+
+
+
+
+
+
 
 void init(void) {
     starPositions();
@@ -342,19 +366,20 @@ void display(void) {
 
 
 
-    //posisi astronot
+//posisi astronot
 
 
 
-    glPushMatrix();
+glPushMatrix();
     glTranslatef(0.0, 30.0, 0.0);
-    glRotatef(90, 0.0, 0.0, 1.0);
-    glRotatef(-angle, 1.0, 0.0, 0.0);
+        glRotatef(90,0.0, 0.0, 1.0);
+        glRotatef(-angle,1.0, 0.0, 0.0);
     astronot();
-    glPopMatrix();
+glPopMatrix();
 
 
-
+//posisi planet
+planet();
 
 
 
