@@ -551,6 +551,82 @@ void alien(void) {
 
 }
 
+void motherspaceship(void) {
+
+
+
+
+
+    //  body 
+    glPushMatrix();
+    glScalef(2.0, 1.0, 1.23);
+    glPushMatrix();
+
+    glTranslatef(0.0, 0.0, 0.0 - 1.5);
+    glRotatef(45, 0.0, 0.0, 1.0);
+
+
+    gluCylinder(quad, 1.0, 1.0, 9.0, 4, 3); //lebarbawah,lebaratas,panjang,potongan,
+    glPopMatrix();
+    glPopMatrix();
+
+    //tutup  body 
+    glPushMatrix();
+    glScalef(2.0, 1.0, 1.23);
+    glPushMatrix();
+
+    glTranslatef(0.0, 0.0, 0.0 + 7.5);
+    glRotatef(45, 0.0, 0.0, 1.0);
+
+
+    gluCylinder(quad, 1.0, 0.0, 0.0, 4, 3); //lebarbawah,lebaratas,panjang,potongan,
+    glPopMatrix();
+    glPopMatrix();
+
+
+    //  tail 
+    glPushMatrix();
+    glScalef(1.3, 1.3, 0.6);
+    glRotatef(90, 0.0, 1.0, 0.0);
+    glPushMatrix();
+
+    glTranslatef(0.0 + 2.5, 0.0, 0.0 - 6.8);
+    glRotatef(45, 0.0, 0.0, 1.0);
+
+
+    gluCylinder(quad, 0.5, 1.0, 8.0, 4, 3); //lebarbawah,lebaratas,panjang,potongan,
+    glPopMatrix();
+    glPopMatrix();
+
+    //tutup tail bawah
+    glPushMatrix();
+    glScalef(1.3, 1.3, 0.6);
+    glRotatef(90, 0.0, 1.0, 0.0);
+    glPushMatrix();
+
+    glTranslatef(0.0 + 2.5, 0.0, 0.0 - 6.8);
+    glRotatef(45, 0.0, 0.0, 1.0);
+
+
+    gluCylinder(quad, 0.0, 0.5, 0.0, 4, 3); //lebarbawah,lebaratas,panjang,potongan,
+    glPopMatrix();
+    glPopMatrix();
+
+    //tutup tail atas
+    glPushMatrix();
+    glScalef(1.3, 1.3, 0.6);
+    glRotatef(90, 0.0, 1.0, 0.0);
+    glPushMatrix();
+
+    glTranslatef(0.0 + 2.5, 0.0, 0.0 + 1.2);
+    glRotatef(45, 0.0, 0.0, 1.0);
+
+
+    gluCylinder(quad, 1.0, 0.0, 0.0, 4, 3); //lebarbawah,lebaratas,panjang,potongan,
+    glPopMatrix();
+    glPopMatrix();
+}
+
 void init(void) {
     starPositions();
 
@@ -638,6 +714,16 @@ void display(void) {
     glRotatef(-angle, 1.0, 0.0, 0.0);
     alien();
     glPopMatrix();
+
+    //posisi kapal induk
+
+    glPushMatrix();
+    glTranslatef(30.0, 0.0, -70.0);
+    glRotatef(80, 0.0, 0.0, 1.0);
+    glScalef(5.0, 5.0, 5.0);
+    motherspaceship();
+    glPopMatrix();
+
 
 
 
