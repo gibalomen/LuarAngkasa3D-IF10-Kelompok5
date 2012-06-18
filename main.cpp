@@ -744,7 +744,7 @@ void planet(void) {
     glRotatef(90, 1.0, 0.0, 0.0);
     glBindTexture(GL_TEXTURE_2D, texture[11]);
 
-    gluSphere(quad, 20, 25, 25);
+    gluSphere(quad, 50, 25, 25);
     glPopMatrix();
 
 }
@@ -1164,22 +1164,34 @@ void display(void) {
     //posisi alien
 
     glPushMatrix();
-    glTranslatef(0.0, -30.0, 0.0);
-    glRotatef(-90, 0.0, 0.0, 1.0);
+    glTranslatef(-130.0, 10.0, 400.0);
+    glRotatef(-90, 0.0, 1.0, 0.0);
     glRotatef(-angle, 1.0, 0.0, 0.0);
     alien();
     glPopMatrix();
 
 
+    glPushMatrix();
+    glTranslatef(-170.0, 9.0, 380.0);
+    glRotatef(-90, 0.0, 1.0, 0.0);
+    glRotatef(angle, 1.0, 1.0, 0.0);
+    alien();
+    glPopMatrix();
 
-    glColor3f(1.0f, 1.0f, 1.0f);
-
+    glPushMatrix();
+    glTranslatef(-170.0, 70.0, 350.0);
+    glRotatef(-90, 0.0, 1.0, 0.0);
+    glRotatef(-angle, 1.0, 1.0, 1.0);
+    alien();
+    glPopMatrix();
 
     //posisi astronot
 
     glPushMatrix();
-    glTranslatef(0.0, 30.0, 0.0);
-    glRotatef(90, 0.0, 0.0, 1.0);
+    glTranslatef(-5.0, 3.0, 27.0);
+    glScalef(0.11, 0.11, 0.11);
+    glScalef(-1.0, 1.0, 1.0);
+    glRotatef(45, 0.0, 0.0, 1.0);
     glRotatef(-angle, 1.0, 0.0, 0.0);
     astronot();
     glPopMatrix();
@@ -1188,16 +1200,16 @@ void display(void) {
     //posisi kapal induk
 
     glPushMatrix();
-    glTranslatef(30.0, 0.0, -70.0);
-    glRotatef(80, 0.0, 0.0, 1.0);
-    glScalef(5.0, 5.0, 5.0);
+    glTranslatef(100.0, 0.0, -70.0);
+    glRotatef(90, 0.0, 0.0, 1.0);
+    glScalef(25.0, 25.0, 25.0);
     motherspaceship();
     glPopMatrix();
 
     //posisi spaceship
     glPushMatrix();
-    glTranslatef(-25.0, 0.0, 0.0);
-    glScalef(5.0, 5.0, 5.0);
+    glTranslatef(-5.0, 0.0, 25.0);
+    glRotatef(60, -1.0, 1.0, 0.0);
     glRotatef(-angle, 0.0, 0.0, 1.0);
     spaceship();
     glPopMatrix();
@@ -1206,20 +1218,27 @@ void display(void) {
     //posisi ufo
 
     glPushMatrix();
-    glTranslatef(25.0, 0.0, 0.0);
-    glRotatef(45, 1.0, 1.0, 1.0);
+
+    glTranslatef(-170.0, 60.0, 400.0);
+    glRotatef(-60, 1.0, 0.0, 0.0);
     glRotatef(-angle, 0.0, 0.0, 1.0);
+
+    glScalef(11.0, 11.0, 11.0);
     ufo();
     glPopMatrix();
 
     //posisi planet
+    //earth
+    glPushMatrix();
 
     glPushMatrix();
-    glTranslatef(0.0, 30.0, 60.0);
-
+    glTranslatef(-30.0, 10.0, 150.0);
+    //glScalef(2.0,2.0,2.0);
+    glRotatef(-15, 0.0, 0.0, 01.0);
+    glRotatef(180, 1.0, 0.0, 0.0);
     planet();
     glPopMatrix();
-
+    glPopMatrix();
 
 
 
