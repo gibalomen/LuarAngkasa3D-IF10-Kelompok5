@@ -121,7 +121,7 @@ int ImageLoad(char *filename, Image *image) {
 //angle of rotation
 float xpos = 0, ypos = 0, zpos = 0, xrot = 0, yrot = 0, angle = 0.0;
 
-float cRadius = 20.0f; // our radius distance from our character
+float cRadius = 10.0f; // our radius distance from our character
 
 float lastx, lasty;
 
@@ -1129,10 +1129,12 @@ void init(void) {
 
 void camera(void) {
 
-    glTranslatef(0.0f, 0.0f, -cRadius);
-    glBindTexture(GL_TEXTURE_2D, texture[5]);
+    glTranslatef(0.0f, -3.0f, -cRadius);
+    glRotatef(10, 1.0, 0.0, 0.0);
+    glRotatef(90, 0.0, 0.0, 1.0);
+    glRotatef(180, 1.0, 0.0, 0.0);
 
-    glutSolidTeapot(2); //Our character to follow
+    spaceship(); //Our character to follow
 
 
     //	gluLookAt(xpos, ypos, 50, 0.0, 0.0, 5.0, 0.0, 1.0, 0.0);    
