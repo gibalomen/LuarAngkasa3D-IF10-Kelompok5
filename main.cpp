@@ -1128,14 +1128,16 @@ void init(void) {
 }
 
 void camera(void) {
-
-    glTranslatef(0.0f, -3.0f, -cRadius);
-    glRotatef(10, 1.0, 0.0, 0.0);
+    glPushMatrix();
+    glTranslatef(0.0f, -2.0f, -cRadius);
+    glRotatef(-2, 1.0, 0.0, 0.0);
     glRotatef(90, 0.0, 0.0, 1.0);
     glRotatef(180, 1.0, 0.0, 0.0);
 
     spaceship(); //Our character to follow
 
+
+    glPopMatrix();
 
     //	gluLookAt(xpos, ypos, 50, 0.0, 0.0, 5.0, 0.0, 1.0, 0.0);    
     glRotatef(xrot, 1.0, 0.0, 0.0); //rotate our camera on teh x-axis (left and right)
@@ -1248,6 +1250,54 @@ void reshape(int w, int h) {
 
 }
 
+void keyboard(unsigned char key, int x, int y) {
+    if (key == 'q') {
+        xrot += 1;
+        if (xrot > 360) xrot -= 360;
+    }
+
+    if (key == 'z') {
+        xrot -= 1;
+        if (xrot < -360) xrot += 360;
+    }
+
+    if (key == 'w') {
+        float xrotrad, yrotrad;
+        yrotrad = (yrot / 180 * 3.141592654f);
+        xrotrad = (xrot / 180 * 3.141592654f);
+        xpos += float(sin(yrotrad));
+        zpos -= float(cos(yrotrad));
+        ypos -= float(sin(xrotrad));
+    }
+
+    if (key == 's') {
+        float xrotrad, yrotrad;
+        yrotrad = (yrot / 180 * 3.141592654f);
+        xrotrad = (xrot / 180 * 3.141592654f);
+        xpos -= float(sin(yrotrad));
+        zpos += float(cos(yrotrad));
+        ypos += float(sin(xrotrad));
+    }
+
+    if (key == 'd') {
+        float yrotrad;
+        yrotrad = (yrot / 180 * 3.141592654f);
+        xpos += float(cos(yrotrad)) * 0.2;
+        zpos += float(sin(yrotrad)) * 0.2;
+    }
+
+    if (key == 'a') {
+        float yrotrad;
+        yrotrad = (yrot / 180 * 3.141592654f);
+        xpos -= float(cos(yrotrad)) * 0.2;
+        zpos -= float(sin(yrotrad)) * 0.2;
+    }
+
+    if (key == 27) {
+        exit(0);
+    }
+}
+
 void mouseMovement(int x, int y) {
     int diffx = x - lastx; //check the difference between the current x and the last x position
     int diffy = y - lasty; //check the difference between the current y and the last y position
@@ -1270,6 +1320,7 @@ int main(int argc, char **argv) {
 
     glutPassiveMotionFunc(mouseMovement); //check for mouse movement
 
+    glutKeyboardFunc(keyboard);
     glutMainLoop();
     return 0;
 }
